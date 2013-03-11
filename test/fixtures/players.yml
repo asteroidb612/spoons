@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  password: MyString
+  secret: MyString
+  tags: 1
+  tagged: false
+  year: 1
+
+two:
+  name: MyString
+  password: MyString
+  secret: MyString
+  tags: 1
+  tagged: false
+  year: 1

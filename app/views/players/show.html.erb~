@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="large-5 columns panel tab" >
+    <div class="row tab_row">
+      <%# image_tag @player.photo.url, {:height => 42, :width => 42}%>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.name %>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.year %>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.secret %>
+    </div>      
+  </div>
+  <div class="large-2 columns"></div>
+  <div class="large-5 columns panel tab">
+    <div class="row tab_row">
+      <%# image_tag @player.photo.url, {:height => 42, :width => 42}%>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.name %>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.year %>
+    </div>    
+    <div class="row tab_row">
+      <%= @player.secret %>
+    </div>      
+  </div>
+</div>
