@@ -12,32 +12,44 @@
   </div>
   <% end %>
 </div>
-<div class="field row">
-  <%= f.label :name %><br />
+
+<div class="field row llabel show-for-touch">
+  <span class="postfix radius">Name</span>
   <%= f.text_field :name %>
 </div>
+</br>
 
-<div class="field row">
-  <%= f.label :password %><br />
+<div class="field row llabel show-for-touch">
+  <span class="postfix radius">email</span>
+  <%= f.text_field :email %>
+</div>
+</br>
+
+<div class="field row llabel show-for-touch">
+  <span class="postfix radius">Password</span>
   <%= f.text_field :password %>
 </div>
+</br>
 
-<div class="field row">
-  <%= f.label :year %><br />
-  <%= f.number_field :year %>
+<div class="field row llabel show-for-touch">
+  <span class="postfix radius">Year</span>
+  <%= select(:player, :year, ["9", "10", "11", "12"], {}, {:size => "4"}) %>
 </div>
+</br>
 
-<div class="field row show-for-touch">
-  <%= f.label :photo %><br />
+<div class="field row llabel show-for-touch">
+  <span class="postfix radius">Photo</span>  
   <%= f.file_field :photo, {:accept => "image/*", :capture=> "camera"} %>
 </div>
+</br>
 
-<div class="field row hide-for-touch">
+<div class="field row llabel hide-for-touch">
   You must view this on a smartphone to take the player's picture! 
 </div>
+</br>
 
 <div class="actions show-for-touch">
-  <%= link_to_submit("Create Player", {:class => "button"}) %>
+  <%= submit_tag("Create Spoon Warrior") %>
 </div>
 
 <% end %>
