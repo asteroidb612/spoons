@@ -11,14 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130312183943) do
+
+ActiveRecord::Schema.define(:version => 20130313160520) do
+
+  create_table "games", :force => true do |t|
+    t.integer  "round_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "players", :force => true do |t|
     t.string   "name"
+    t.string   "email"
     t.string   "password"
     t.string   "secret"
-    t.integer  "tags"
-    t.boolean  "tagged"
+    t.integer  "game_id"
     t.integer  "year"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
@@ -26,6 +33,27 @@ ActiveRecord::Schema.define(:version => 20130312183943) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "rounds", :force => true do |t|
+    t.integer  "tournament_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.datetime "timestamp"
+    t.integer  "tagger_id"
+    t.integer  "Player_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tournaments", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
