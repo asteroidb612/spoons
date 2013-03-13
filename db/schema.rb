@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310011138) do
+ActiveRecord::Schema.define(:version => 20130312183943) do
 
   create_table "players", :force => true do |t|
     t.string   "name"
@@ -20,8 +20,12 @@ ActiveRecord::Schema.define(:version => 20130310011138) do
     t.integer  "tags"
     t.boolean  "tagged"
     t.integer  "year"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
 end

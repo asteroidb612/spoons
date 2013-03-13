@@ -25,6 +25,7 @@ end
 
 gem 'jquery-rails'
 gem 'thin'
+gem 'paperclip'
 # To use ActiveModel has_secure_ord
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

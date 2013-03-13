@@ -11,22 +11,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+  <div class="large-6 centered columns">
+    <div class="field row">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.text_field :password %>
-  </div>
+    <div class="field row">
+      <%= f.label :password %><br />
+      <%= f.text_field :password %>
+    </div>
 
-  <div class="field">
-    <%= f.label :year %><br />
-    <%= f.number_field :year %>
-  </div>
+    <div class="field row">
+      <%= f.label :year %><br />
+      <%= f.number_field :year %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="field row show-for-touch">
+      <%= f.label :photo %><br />
+      <%= f.file_field :photo %>
+    </div>
+    
+    <div class="actions">
+      <%= link_to_submit("Create Player", {:class => "button"}) %>
+    </div>
+  </div>  
 <% end %>

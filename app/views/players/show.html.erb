@@ -1,7 +1,9 @@
 <div class="row">
   <div class="large-5 columns panel tab" >
     <div class="row tab_row">
-      <%= image_tag 'spoon-assassin.png', {:height => 200, :width => 200}%>
+      You</div>
+    <div class="row tab_row">
+      <%= image_tag @player.photo, {:height => 200, :width => 200}%>
     </div>    
     <div class="row tab_row">
       <%= @player.name %>
@@ -16,35 +18,49 @@
   <div class="large-2 columns"></div>
     <div class="large-5 columns panel tab" >
     <div class="row tab_row">
-      <%= image_tag 'spoon-assassin.png', {:height => 200, :width => 200}%>
+      Him</div>
+    <div class="row tab_row">
+      <%= image_tag @player.photo, {:height => 200, :width => 200}%>
+      <%# image_tag @player.target.photo, {:height => 200, :width => 200}%>      
     </div>    
     <div class="row tab_row">
       <%= @player.name %>
+      <%# @player.target.name %>      
     </div>    
     <div class="row tab_row">
       <%= @player.year %>
+      <%# @player.target.year %>      
     </div>    
     <div class="row tab_row">
       <%= @player.secret %>
+      <%# Form %>
     </div>      
   </div>
 </div>
+
 <div class="row">
-  <div class="large-7 columns tab">
-    <%# @game.tags.each do |tag| %>
-    <div class="row tab_row">
-      <%# tag.report %>
+
+  <div class="large-6 columns tab">
+    <% ["10:15 Matthew Haney tagged Frank Morton", "12:45 Sean Morton tagged Quincy Gholston", "1:42 Skyler Morris tagged Michael Guenther", "8:34 Jackson Fox tagged Charlie Marks"].each do |tag| %>
+    <%# @player.game.tags.each do |tag| %>
+    <div class="row stat_row">
+      <%= tag.to_s %>
     </div>
+    <% end %>
   </div>
-  <div class="large-4 offset-1 columns tab ">
-    <div class="row tab_row">
-      <%# @game.assassin %>
+
+  <div class="large-4 offset-1 columns stats ">
+    <div class="row stat_row">
+      Most tags: Matthew Haney
+      <%# @player.game.assassin %>
     </div>
-    <div class="row tab_row">
-      <%# @game.survivor %>
+    <div class="row stat_row">
+      Victor: Sean Whitley
+      <%# @player.game.survivor %>
     </div>
-    <div class="row tab_row">
-      <%# @game.other_award %>
+    <div class="row stat_row">
+      Other Award: Mr. Timme
+      <%# @player.game.other_award %>
     </div>
   </div>
 </div>
