@@ -1,39 +1,43 @@
-<%= form_for(@player) do |f| %>
+<div class="field row">
+  <%= form_for(@player) do |f| %>
   <% if @player.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
-      <ul>
+    <ul>
       <% @player.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
+</div>
+<div class="field row">
+  <%= f.label :name %><br />
+  <%= f.text_field :name %>
+</div>
 
-  <div class="large-6 centered columns">
-    <div class="field row">
-      <%= f.label :name %><br />
-      <%= f.text_field :name %>
-    </div>
+<div class="field row">
+  <%= f.label :password %><br />
+  <%= f.text_field :password %>
+</div>
 
-    <div class="field row">
-      <%= f.label :password %><br />
-      <%= f.text_field :password %>
-    </div>
+<div class="field row">
+  <%= f.label :year %><br />
+  <%= f.number_field :year %>
+</div>
 
-    <div class="field row">
-      <%= f.label :year %><br />
-      <%= f.number_field :year %>
-    </div>
+<div class="field row show-for-touch">
+  <%= f.label :photo %><br />
+  <%= f.file_field :photo, {:accept => "image/*", :capture=> "camera"} %>
+</div>
 
-    <div class="field row show-for-touch">
-      <%= f.label :photo %><br />
-      <%= f.file_field :photo %>
-    </div>
-    
-    <div class="actions">
-      <%= link_to_submit("Create Player", {:class => "button"}) %>
-    </div>
-  </div>  
+<div class="field row hide-for-touch">
+  You must view this on a smartphone to take the player's picture! 
+</div>
+
+<div class="actions show-for-touch">
+  <%= link_to_submit("Create Player", {:class => "button"}) %>
+</div>
+
 <% end %>

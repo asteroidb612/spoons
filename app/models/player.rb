@@ -1,8 +1,8 @@
 class Player < ActiveRecord::Base
   attr_accessible :email, :name, :password, :secret, :tagged, :tags, :year
-  # Array of players tagged
-  has_one :target, Player
-  has_many :tags, Tag
+
+  has_one :target, :class_name => "Player"
+  has_many :tags, :class_name => "Tag"
   belongs_to :game
 
   has_attached_file :photo
