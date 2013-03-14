@@ -1,33 +1,3 @@
-<h1>Listing players</h1>
+<h1>Active Players</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Password</th>
-    <th>Secret</th>
-    <th>Tags</th>
-    <th>Tagged</th>
-    <th>Year</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @players.each do |player| %>
-  <tr>
-    <td><%= player.name %></td>
-    <td><%= player.password %></td>
-    <td><%= player.secret %></td>
-    <td><%= player.tags %></td>
-    <td><%= player.tagged %></td>
-    <td><%= player.year %></td>
-    <td><%= link_to 'Show', player %></td>
-    <td><%= link_to 'Edit', edit_player_path(player) %></td>
-    <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Player', new_player_path %>
+<h1>Inactive (Tagged) Players</h1>
