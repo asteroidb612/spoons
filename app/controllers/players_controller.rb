@@ -10,11 +10,17 @@ class PlayersController < ApplicationController
     end
   end
 
+  def about
+    return
+  end
+
   # GET /players/1
   # GET /players/1.json
   def show
     @player = Player.find(params[:id])
-
+    if @user.id != @player.id
+      redirect_to '/nope'
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @player }

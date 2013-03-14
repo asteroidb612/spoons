@@ -8,4 +8,12 @@ class Player < ActiveRecord::Base
   has_attached_file :photo
   attr_protected :photo_file_name, :photo_content_type, :photo_size
 
+  def active
+    Player.where(tagged: false)
+  end
+
+  def inactive
+    Player.where(tagged: true)
+  end
+
 end

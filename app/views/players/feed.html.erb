@@ -1,0 +1,17 @@
+<div class="row tab round">
+  <div class="columns centered">
+    <%= link_to "What Is This Spoon Wars Thing?", '/about' %>
+    <h2>Active Players</h2>
+    <table>
+      <% Player.where(tagged: false).each do |p| %>
+      <tr><td><%= p.name %></td></tr>
+      <% end %>
+    </table>
+    <h2>Inactive (Tagged) Players</h2>
+    <table>
+      <% Player.where(tagged: true).each do |p| %>
+      <tr><td><%= p.name %></td></tr>
+      <% end %>
+    </table>
+  </div>
+</div>

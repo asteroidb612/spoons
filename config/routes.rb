@@ -1,7 +1,9 @@
 Spoon::Application.routes.draw do
   resources :players
 
-  root :to => "players#new"
+  root :to => "players#index"
+  get '/about' => "players#about"
+  get '/nope' => "players#nope"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
