@@ -23,45 +23,7 @@
 	       moz-background-size: cover;
 	       o-background-size: cover;
 	       background-size: cover;">
-    <!--    <div class="container row" style="background: brown; margin-top: 0px; line-height: 150%;">
-	    <div class="small-4 large-12 columns" style="margin-top: 0px;">
-	<h1 style="margin-top: 0px; color: white; font-size: 3em; font-family: Avenir; padding-left: 10px; float: left;">Spoon Wars</h1>
-LARGE
-	<div class="small-4 large-4 columns show-for-medium-up" style="float: right;">
-	  <% if flash[:error] %>
-	  <span class="flash"><%= flash[:error] %></span>
-	  <% end %>
-	  <% if session[:user].nil? %>
-	  <%= form_tag(action: "login") do %>
-	  <label for="player_email">Email Address:</label>
-	  <%= text_field("player", "email", size: 20, placeholder: "you@example.com")%>
-	  <label for="player_password">Password:</label>
-	  <%= password_field("player", "password", size: 20, placeholder: "password")%>
-	  <%= submit_tag "Login" %>
-	  <% end %>
-	  <% else %>
-	  <%= "Logged in as #{session[:user].name}." %><br /><%= link_to("About Spoon Wars", "/about") %> | <%= link_to("My Profile", "/players/#{session[:user].id}") %> | <%= link_to("Log Out", "/logout") %>
-	  <% end %>
-	</div>
-SMALL
-	<div class="small-2 large-4 columns show-for-small-down" style="float: left; right: 0%;">
-	  <% if flash[:error] %>
-	  <span class="flash"><%= flash[:error] %></span>
-	  <% end %>
-	  <% if session[:user].nil? %>
-	  <%= form_tag(action: "login") do %>
-	  <label for="player_email">Email Address:</label>
-	  <%= text_field("player", "email", size: 20, placeholder: "you@example.com")%>
-	  <label for="player_password">Password:</label>
-	  <%= password_field("player", "password", size: 20, placeholder: "password")%>
-	  <%= submit_tag "Login" %>
-	  <% end %>
-	  <% else %>
-	  <%= "Logged in as #{session[:user].name}." %><br /><%= link_to("About Spoon Wars", "/about") %> | <%= link_to("My Profile", "/players/#{session[:user].id}") %> | <%= link_to("Log Out", "/logout") %>
-	  <% end %>
-	</div>
-      </div>
-    </div>-->
+    
     <div class="fixed">
       <nav class="top-bar">
 	<ul class="title-area">
@@ -80,12 +42,12 @@ SMALL
 	<section class="top-bar-section">
 	  <ul class="left">
 	    <% if flash[:error] %>
-	    <li class="active">
-	      <span class="flash"><%= flash[:error] %></span>
+	    <li>
+	      <a><%= flash[:error] %></a>
 	    </li>
             <% end %>
 	  </ul>
-	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0);">
+	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(17, 17, 17);">
 	    <!--  -->
 	    <% if session[:user].nil? %>
 	    <%= form_tag(action: "login") do %>
