@@ -13,7 +13,7 @@ config/initializers/admin.rb
 # Ignore all logfiles and tempfiles.
 log/*.log
 tmp
-
+test
 *~
 .*~
 *#

@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   has_many :games
-  attr_accessible :start_at, :end_at
+  attr_accessible :start_at, :end_at, :name
   belongs_to :tournament
 
   def players

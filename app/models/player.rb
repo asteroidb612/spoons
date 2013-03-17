@@ -5,7 +5,8 @@ class Player < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :password, presence: true
   validates :year, presence: true
-  validates :photo, presence: true
+  # Oops.
+  # validates :photo, presence: true
 
   has_one :target, class_name: Player
   has_many :tags, class_name: Tag
