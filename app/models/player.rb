@@ -5,9 +5,11 @@ class Player < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :password, presence: true
   validates :year, presence: true
-  validates :photo, presence: true
+  # Oops
+  # validates :photo, presence: true
 
-  has_one :target, class_name: Player
+  belongs_to :target, class_name: Player
+  belongs_to :hunter, class_name: Player
   has_many :tags, class_name: Tag
   belongs_to :game
 
@@ -24,6 +26,22 @@ class Player < ActiveRecord::Base
 
   def self.authenticate(email, pass)
     where(password: pass, email: email).first
+  end
+
+  def pick_secret!
+    wc = Word.count
+    ac = self.game.players.count
+    
+    while self.secret.nil?
+      c = Word.random.to_s + Word.random.to_s if ac < wc
+      c = SecureRandom.hex(3) if c.nil?
+
+      # Find other players in our game with our secret
+      next if Player.where(:secret => c, :game_id => self.game.id).count > 0
+      self.secret = c
+    end
+
+    self.secret
   end
 
   # validates :photo_file_name, presence: true
