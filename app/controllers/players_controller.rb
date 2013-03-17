@@ -17,8 +17,13 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    if session[:user].nil?
+      flash[:error] = "Please log in."
+      redirect_to '/'
+      return
+    end
     @player = Player.find(params[:id])
-    if @user.id != @player.id
+    if session[:user].id != @player.id
       redirect_to '/nope'
     end
     respond_to do |format|
@@ -86,4 +91,22 @@ class PlayersController < ApplicationController
       format.json { head :no_content }
     end
   end
-end
+  
+  def login
+    if request.post?
+      session[:user] = Player.authenticate( params[:player][:email], params[:player][:password] )
+      if session[:user].nil?
+        flash[:error] = "Login failed."
+        redirect_to '/'
+      else
+        redirect_to "/players/#{session[:user].id}"
+        return
+      end # @user.nil?
+    end # request.post?
+  end # login
+  
+  def logout
+    session[:user] = nil
+    redirect_to '/'
+  end
+end # PlayersController

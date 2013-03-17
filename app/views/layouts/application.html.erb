@@ -15,19 +15,100 @@
     
     <title><%= content_for?(:title) ? yield(:title) : "Spoon Wars" %></title>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= javascript_include_tag "foundation.topbar.js" %>
     <%= csrf_meta_tags %>
   </head>
   <body style="background: url(<%= asset_path 'spoon-assassin.png' %>) no-repeat center center fixed;
-      webkit-background-size: cover;
-      moz-background-size: cover;
-      o-background-size: cover;
-      background-size: cover;">
-      <div class="container" style="background: brown; margin-top: 0px; line-height: 150%;">
-	<div class="small-12 large-4 columns" style="margin-top: 0px;">
-	  <h1 style="margin-top: 0px; color: white; font-size: 3em; font-family: Avenir; padding-left: 10px;">Spoon Wars</h1>
+	       webkit-background-size: cover;
+	       moz-background-size: cover;
+	       o-background-size: cover;
+	       background-size: cover;">
+    <!--    <div class="container row" style="background: brown; margin-top: 0px; line-height: 150%;">
+	    <div class="small-4 large-12 columns" style="margin-top: 0px;">
+	<h1 style="margin-top: 0px; color: white; font-size: 3em; font-family: Avenir; padding-left: 10px; float: left;">Spoon Wars</h1>
+LARGE
+	<div class="small-4 large-4 columns show-for-medium-up" style="float: right;">
+	  <% if flash[:error] %>
+	  <span class="flash"><%= flash[:error] %></span>
+	  <% end %>
+	  <% if session[:user].nil? %>
+	  <%= form_tag(action: "login") do %>
+	  <label for="player_email">Email Address:</label>
+	  <%= text_field("player", "email", size: 20, placeholder: "you@example.com")%>
+	  <label for="player_password">Password:</label>
+	  <%= password_field("player", "password", size: 20, placeholder: "password")%>
+	  <%= submit_tag "Login" %>
+	  <% end %>
+	  <% else %>
+	  <%= "Logged in as #{session[:user].name}." %><br /><%= link_to("About Spoon Wars", "/about") %> | <%= link_to("My Profile", "/players/#{session[:user].id}") %> | <%= link_to("Log Out", "/logout") %>
+	  <% end %>
+	</div>
+SMALL
+	<div class="small-2 large-4 columns show-for-small-down" style="float: left; right: 0%;">
+	  <% if flash[:error] %>
+	  <span class="flash"><%= flash[:error] %></span>
+	  <% end %>
+	  <% if session[:user].nil? %>
+	  <%= form_tag(action: "login") do %>
+	  <label for="player_email">Email Address:</label>
+	  <%= text_field("player", "email", size: 20, placeholder: "you@example.com")%>
+	  <label for="player_password">Password:</label>
+	  <%= password_field("player", "password", size: 20, placeholder: "password")%>
+	  <%= submit_tag "Login" %>
+	  <% end %>
+	  <% else %>
+	  <%= "Logged in as #{session[:user].name}." %><br /><%= link_to("About Spoon Wars", "/about") %> | <%= link_to("My Profile", "/players/#{session[:user].id}") %> | <%= link_to("Log Out", "/logout") %>
+	  <% end %>
 	</div>
       </div>
-      <%= yield %>
+    </div>-->
+    <div class="fixed">
+      <nav class="top-bar">
+	<ul class="title-area">
+	  <!-- Title Area -->
+	  <li class="name">
+	    <h1 style="font-size: 1.5em;"><a href="/">Spoon Wars</a></h1>
+	  </li>
+	  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	  <% if session[:user].nil? %>
+	  <li class="toggle-topbar menu-icon"><a href="#"><span>Log In</span></a></li>
+	  <% else %>
+	  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	  <% end %>
+	</ul>
+	
+	<section class="top-bar-section">
+	  <ul class="left">
+	    <% if flash[:error] %>
+	    <li class="active">
+	      <span class="flash"><%= flash[:error] %></span>
+	    </li>
+            <% end %>
+	  </ul>
+	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(0, 0, 0);">
+	    <!--  -->
+	    <% if session[:user].nil? %>
+	    <%= form_tag(action: "login") do %>
+	    <li><a>Email Address:</a></li>
+	    <li><a><%= text_field("player", "email", size: 20, placeholder: "you@example.com")%></a></li>
+	    <li><a>Password:</a></li>
+	    <li><a><%= password_field("player", "password", size: 20, placeholder: "password")%></a></li>
+	    <li><a><%= submit_tag "Log In", style: "top: 0px;" %></a></li>
+	    <% end %>
+	    <% else %>
+	    <li><%= link_to("About Spoon Wars", "/about") %></li>
+	    <li class="divider"></li>
+	    <li><%= link_to("My Profile", "/players/#{session[:user].id}") %></li>
+	    <li class="divider"></li>
+	    <li><%= link_to("Log Out", "/logout") %></li>
+	    <li class="divider"></li>
+	    <li><a style="font-size: 0.7em;"><%= "Logged in as #{session[:user].name}" %></a></li>
+	    <% end %>
+	  </ul>
+	</section>
+      </nav>
+    </div>
+    <%= yield %>
     <%= javascript_include_tag "application" %>
     <%= stylesheet_link_tag    "application" %>
   </body>

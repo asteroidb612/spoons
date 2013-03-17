@@ -22,6 +22,10 @@ class Player < ActiveRecord::Base
     Player.where(tagged: true)
   end
 
+  def self.authenticate(email, pass)
+    where(password: pass, email: email).first
+  end
+
   # validates :photo_file_name, presence: true
   # validates :photo_content_type, presence: true
   # validates :photo_size, presence: true
