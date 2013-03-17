@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317183911) do
+
+ActiveRecord::Schema.define(:version => 20130317195420) do
 
   create_table "games", :force => true do |t|
     t.integer  "round_id"
@@ -33,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130317183911) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.boolean  "tagged",             :default => false
+    t.integer  "target_id"
   end
 
   create_table "rounds", :force => true do |t|
@@ -56,6 +58,11 @@ ActiveRecord::Schema.define(:version => 20130317183911) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+  end
+
+  create_table "words", :force => true do |t|
+    t.string  "word"
+    t.boolean "used", :default => false
   end
 
 end

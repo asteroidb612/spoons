@@ -40,3 +40,6 @@ gem 'paperclip'
 
 # To use debugger
 # gem 'debugger'
+
+# Random words for secrets
+gem "randumb"

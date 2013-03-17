@@ -28,19 +28,19 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     <div class="row tab_row">
       Him</div>
     <div class="row tab_row">
-      <%= image_tag @player.photo, {:height => 200, :width => 200}%>
-      <%# image_tag @player.target.photo, {:height => 200, :width => 200}%>      
+      <%# image_tag @player.photo, {:height => 200, :width => 200}%>
+      <%= image_tag @player.target.photo, {:height => 200, :width => 200}%>      
     </div>    
     <div class="row tab_row">
-      <%= @player.name %>
-      <%# @player.target.name %>      
+      <%# @player.name %>
+      <%= @player.target.name %>      
     </div>    
     <div class="row tab_row">
-      <%= @player.year %>
-      <%# @player.target.year %>      
+      <%# @player.year %>
+      <%= @player.target.year %>      
     </div>    
     <div class="row tab_row">
-      <%= @player.secret %>
+      <%# @player.secret %>
       <%# Form %>
     </div>      
   </div>
