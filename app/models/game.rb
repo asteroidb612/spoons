@@ -16,5 +16,27 @@ class Game < ActiveRecord::Base
     players[max].target = players[0] if players[max].target_id == nil
     players[max].save!
   end
-
+  
+  def most_tags
+    ret = nil
+    players.each do |p|
+      if ret == nil
+        ret = p
+      elsif p.tags.count > ret.tags.count
+        ret = p
+      end
+    end
+    return ret
+  end
+  
+  def survivor
+    if players.count == 1
+      return players.first.name
+    elsif players.count == 2
+      return "Heated battle between #{players.first.name} and #{players.last.name}!"
+    else
+      return "Game not yet over."
+    end
+  end
+  
 end

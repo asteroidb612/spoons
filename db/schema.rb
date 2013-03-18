@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20130318031935) do
 
   create_table "tags", :force => true do |t|
     t.datetime "timestamp"
+    t.integer  "Player_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "tagger_id"

@@ -58,28 +58,12 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 <% end %>
 
 <div class="row">
-
-  <div class="large-6 columns tab">
-    <% ["10:15 Matthew Haney tagged Frank Morton", "12:45 Sean Morton tagged Quincy Gholston", "1:42 Skyler Morris tagged Michael Guenther", "8:34 Jackson Fox tagged Charlie Marks"].each do |tag| %>
-    <%# @player.game.tags.each do |tag| %>
-    <div class="row stat_row">
-      <%= tag.to_s %>
-    </div>
-    <% end %>
-  </div>
-
   <div class="large-4 offset-1 columns stats ">
     <div class="row stat_row">
-      Most tags: Matthew Haney
-      <%# @player.game.assassin %>
+      Most tags: <%= @player.game.most_tags.name %> (<%= @player.game.most_tags.tags.count %>)
     </div>
     <div class="row stat_row">
-      Victor: Sean Whitley
-      <%# @player.game.survivor %>
-    </div>
-    <div class="row stat_row">
-      Other Award: Mr. Timme
-      <%# @player.game.other_award %>
+      Victor: <%= @player.game.survivor %>
     </div>
   </div>
 </div>
