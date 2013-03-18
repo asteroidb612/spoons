@@ -11,7 +11,7 @@ class Player < ActiveRecord::Base
 
   belongs_to :target, class_name: Player
   belongs_to :hunter, class_name: Player
-  has_many :tags, class_name: Tag
+  has_many :tags, class_name: Tag, foreign_key: "tagger_id"
   belongs_to :game
 
   has_attached_file :photo
