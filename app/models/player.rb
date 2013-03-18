@@ -26,7 +26,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.authenticate(email, pass)
-    where(password: pass, email: email).first
+    (x = where(password: pass, email: email).first).nil? ? 0 : x.id
   end
 
   def pick_secret!
@@ -41,7 +41,7 @@ class Player < ActiveRecord::Base
       next if Player.where(:secret => c, :game_id => self.game.id).count > 0
       self.secret = c
     end
-
+    self.save!
     self.secret
   end
 

@@ -15,7 +15,6 @@
     
     <title><%= content_for?(:title) ? yield(:title) : "Spoon Wars" %></title>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
-    <%= javascript_include_tag "foundation.topbar.js" %>
     <%= csrf_meta_tags %>
   </head>
   <body style="background: url(<%= asset_path 'spoon-assassin.png' %>) no-repeat center center fixed;
@@ -32,7 +31,7 @@
 	    <h1 style="font-size: 1.5em;"><a href="/">Spoon Wars</a></h1>
 	  </li>
 	  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-	  <% if session[:user].nil? %>
+	  <% if session[:user_id].nil? %>
 	  <li class="toggle-topbar menu-icon"><a href="#"><span>Log In</span></a></li>
 	  <% else %>
 	  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
@@ -49,7 +48,7 @@
 	  </ul>
 	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(17, 17, 17);">
 	    <!--  -->
-	    <% if session[:user].nil? %>
+	    <% if session[:user_id].nil? %>
 	    <%= form_tag(action: "login") do %>
 	    <li><a>Email Address:</a></li>
 	    <li><a><%= text_field("player", "email", size: 20, placeholder: "you@example.com")%></a></li>
@@ -60,11 +59,11 @@
 	    <% else %>
 	    <li><%= link_to("About Spoon Wars", "/about") %></li>
 	    <li class="divider"></li>
-	    <li><%= link_to("My Profile", "/players/#{session[:user].id}") %></li>
+	    <li><%= link_to("My Profile", "/players/#{session[:user_id]}") %></li>
 	    <li class="divider"></li>
 	    <li><%= link_to("Log Out", "/logout") %></li>
 	    <li class="divider"></li>
-	    <li><a style="font-size: 0.7em;"><%= "Logged in as #{session[:user].name}" %></a></li>
+	    <li><a style="font-size: 0.7em;"><%= "Logged in as #{Player.find(session[:user_id]).name}" %></a></li>
 	    <% end %>
 	  </ul>
 	</section>

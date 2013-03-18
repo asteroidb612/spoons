@@ -17,15 +17,17 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
-    if session[:user].nil?
+    if session[:user_id].nil?
       flash[:error] = "Please log in."
       redirect_to '/'
       return
     end
-    @player = Player.find(params[:id])
-    if session[:user].id != @player.id
+
+    if session[:user_id].to_i != params[:id].to_i
       redirect_to '/nope'
+      return
     end
+    @player = Player.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @player }
@@ -94,19 +96,42 @@ class PlayersController < ApplicationController
   
   def login
     if request.post?
-      session[:user] = Player.authenticate( params[:player][:email], params[:player][:password] )
-      if session[:user].nil?
+      session[:user_id] = Player.authenticate( params[:player][:email], params[:player][:password])
+      if session[:user_id] == 0
         flash[:error] = "Login failed."
         redirect_to '/'
       else
-        redirect_to "/players/#{session[:user].id}"
+        redirect_to "/players/#{session[:user_id]}"
         return
       end # @user.nil?
     end # request.post?
   end # login
   
   def logout
+    session[:user_id] = nil
     session[:user] = nil
     redirect_to '/'
+  end
+
+  def tag
+    if params[:player][:secret] == Player.find(session[:user_id]).target.secret
+      p = Player.find(session[:user_id])
+      t = Tag.new
+      t.timestamp = Time.now
+      t.tagger = p
+      t.tagged = p.target
+      t.save!
+
+      old = p.target
+      old.tagged = true
+      p.target = old.target
+      old.target = nil
+      old.save!
+      p.save!
+      flash[:tag] = "Tag validated!"
+    else
+      flash[:tag] = "Incorrect code word!"
+    end
+    redirect_to "/players/#{session[:user].id}"
   end
 end # PlayersController

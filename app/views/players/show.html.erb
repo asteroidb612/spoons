@@ -5,7 +5,14 @@ img {
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
 </style>
-
+<% if Player.find(session[:user_id]).tagged %>
+<div class="row container">
+  <div class="small-6 large-12 columns tab panel" style="background-color: rgb(165, 42, 42);">
+    <h2 style="color: white;">You have been tagged!</h2>
+    <p style="color: white;">Unfortunately, this means you are out of the game.  You can keep up with other players at the <%= link_to "live feed page", '/feed' %>.</p>
+  </div>
+</div>
+<% else %>
 <div class="row">
   <div class="large-5 columns panel tab" style="background-color: rgb(165, 42, 42);">
     <div class="row tab_row">
@@ -17,10 +24,10 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
       <%= @player.name %>
     </div>    
     <div class="row tab_row">
-      <%= @player.year %>
+      Year: <%= @player.year %>
     </div>    
     <div class="row tab_row">
-      <%= @player.secret %>
+      Secret Word: <%= @player.secret %>
     </div>      
   </div>
   <div class="large-2 columns"></div>
@@ -28,23 +35,27 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     <div class="row tab_row">
       Him</div><br />
     <div class="row tab_row">
-      <%# image_tag @player.photo, {:height => 200, :width => 200}%>
       <%= image_tag @player.target.photo, {:height => 200, :width => 200}%>      
     </div><br />
     <div class="row tab_row">
-      <%# @player.name %>
       <%= @player.target.name %>      
     </div>    
     <div class="row tab_row">
-      <%# @player.year %>
-      <%= @player.target.year %>      
+      Year: <%= @player.target.year %>      
     </div>    
-    <div class="row tab_row">
-      <%# @player.secret %>
-      <%# Form %>
-    </div>      
+    <div class="row">
+      <div class="small-4 large-8 columns">
+      <%= form_tag(action: "tag") do %>
+      <%= text_field("player", "secret", :size => 10, :placeholder => "His Secret Word", :value => "")%>
+	<%= submit_tag("Submit") %>
+	<% end %>
+	<span class="flash"><%= flash[:tag] %></span>
+      </div>
+    </div>
   </div>
 </div>
+
+<% end %>
 
 <div class="row">
 

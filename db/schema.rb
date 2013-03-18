@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130317195420) do
+ActiveRecord::Schema.define(:version => 20130318031935) do
 
   create_table "games", :force => true do |t|
     t.integer  "round_id"
@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(:version => 20130317195420) do
 
   create_table "tags", :force => true do |t|
     t.datetime "timestamp"
-    t.integer  "tagger_id"
-    t.integer  "Player_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "tagger_id"
+    t.integer  "tagged_id"
   end
 
   create_table "tournaments", :force => true do |t|

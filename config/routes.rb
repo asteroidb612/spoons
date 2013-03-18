@@ -7,6 +7,8 @@ Spoon::Application.routes.draw do
   get '/nope' => "players#nope"
   post '/login' => 'players#login'
   get '/logout' => 'players#logout'
+  post '/tag' => 'players#tag'
+  get '/feed' => 'players#feed'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
