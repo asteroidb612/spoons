@@ -30,8 +30,8 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
       Secret Word: <%= @player.secret %>
     </div>      
   </div>
-  <div class="large-2 columns"></div>
-    <div class="large-5 columns panel tab" style="background-color: rgb(165, 42, 42);">
+  <div class="large-5 columns panel tab" style="background-color: rgb(165, 42, 42);">
+    <% if @player.target %>
     <div class="row tab_row">
       Him</div><br />
     <div class="row tab_row">
@@ -45,25 +45,55 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     </div>    
     <div class="row">
       <div class="small-4 large-8 columns">
-      <%= form_tag(action: "tag") do %>
-      <%= text_field("player", "secret", :size => 10, :placeholder => "His Secret Word", :value => "")%>
+	<%= form_tag(action: "tag") do %>
+	<%= text_field("player", "secret", :size => 10, :placeholder => "His Secret Word", :value => "")%>
 	<%= submit_tag("Submit") %>
 	<% end %>
 	<span class="flash"><%= flash[:tag] %></span>
       </div>
     </div>
   </div>
+  <% else %>
+  <div class="large-2 columns">
+    <div class="row tab_row" style="background-color: brown; color: white;">
+      You currently have no target.
+    </div>
+  </div>
+  <% end %>
 </div>
 
 <% end %>
-
 <div class="row">
+  <% if @player.game %>
   <div class="large-4 offset-1 columns stats ">
     <div class="row stat_row">
       Most tags: <%= @player.game.most_tags.name %> (<%= @player.game.most_tags.tags.count %>)
     </div>
     <div class="row stat_row">
       Victor: <%= @player.game.survivor %>
+    </div>
+  </div>
+  <% else %>
+  <div class="large-4 offset-1 columns stats ">
+    <div class="row stat_row">
+      You are not in a game yet!
+    </div>
+  </div>
+  <% end %>
+  <div class="large-4 offset-1 columns stats">
+    <div class="row stat_row">
+      <% if @player.tags == [] %>
+      You have not tagged anyone!
+      <% else %>
+      <h4 style="color: white;">Tags</h4>
+      <% @player.tags.each do |t| %>
+      <div class="large-8 offset-1 columns stats" style="font-size: 0.7em;">
+	<%= t.to_s %>
+      </div>
+      <br />
+      <% end %>
+      <% end %>
+      <br />
     </div>
   </div>
 </div>

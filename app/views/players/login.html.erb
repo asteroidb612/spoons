@@ -1,0 +1,18 @@
+<div class="row tab round">
+  <%= flash[:notice] %>
+  <div class="6 columns centered">
+    <%= form_tag(action: "login") do %>
+    <fieldset>
+      <legend style="background-color: brown;">Log In</legend>
+      <div class="row">
+	<label style="color: white;">Email Address:</label>
+	<%= text_field("player", "email", size: 20, placeholder: "you@example.com")%>
+      </div>
+      <div class="row">
+	<label style="color: white;">Password:</label>
+	<%= password_field("player", "password", size: 20, placeholder: "password")%>
+      </div>
+    <a><%= submit_tag "Log In", style: "top: 0px;" %></a>
+    <% end %>
+  </div>
+</div>

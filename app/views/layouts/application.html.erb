@@ -11,8 +11,7 @@
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
     
     <!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <meta class="show-for-mobile" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
     <title><%= content_for?(:title) ? yield(:title) : "Spoon Wars" %></title>
     <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
@@ -28,17 +27,18 @@
 	<ul class="title-area">
 	  <!-- Title Area -->
 	  <li class="name">
-	    <h1 style="font-size: 1.5em;"><a href="/">Spoon Wars</a></h1>
+	    <h1 style="font-size: 1.5em;"><a href="/login">RJ Spoon Wars</a></h1>
 	  </li>
 	  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+	  
 	  <% if session[:user_id].nil? %>
-	  <li class="toggle-topbar menu-icon"><a href="#"><span>Log In</span></a></li>
+	  <li class="toggle-topbar menu-icon hide-for-touch"><a href="/login"><span>Log In</span></a></li>
+	  <li class="toggle-topbar show-for-touch"><a href="/login"><span>Log In</span></a></li>	  
 	  <% else %>
 	  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	  <% end %>
 	</ul>
-	
-	<section class="top-bar-section">
+	<section class="top-bar-section hide-for-touch">
 	  <ul class="left">
 	    <% if flash[:error] %>
 	    <li>
@@ -47,10 +47,9 @@
             <% end %>
 	  </ul>
 	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(17, 17, 17);">
-	    <!--  -->
 	    <% if session[:user_id].nil? %>
 	    <%= form_tag(action: "login") do %>
-	    <li><a>Email Address:</a></li>
+	    <li><a>ess:</a></li>
 	    <li><a><%= text_field("player", "email", size: 20, placeholder: "you@example.com")%></a></li>
 	    <li><a>Password:</a></li>
 	    <li><a><%= password_field("player", "password", size: 20, placeholder: "password")%></a></li>
@@ -58,6 +57,8 @@
 	    <% end %>
 	    <% else %>
 	    <li><%= link_to("About Spoon Wars", "/about") %></li>
+	    <li class="divider"></li>
+	    <li><%= link_to("Game Results Feed", "/feed") %></li>
 	    <li class="divider"></li>
 	    <li><%= link_to("My Profile", "/players/#{session[:user_id]}") %></li>
 	    <li class="divider"></li>
@@ -71,6 +72,7 @@
     </div>
     <%= yield %>
     <%= javascript_include_tag "application" %>
+    <script type="text/javascript" src="beta.domain.com/assets/javascripts/app.js">var $doc = $(document); $doc.ready(function(){ $doc.foundationTopBar(); });</script> 
     <%= stylesheet_link_tag    "application" %>
   </body>
 </html>

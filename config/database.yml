@@ -24,7 +24,7 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: spoons_production
+  database: spoons_development
   username: spoons
   password: spoons_be_good
   host: localhost

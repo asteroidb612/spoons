@@ -26,7 +26,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.authenticate(email, pass)
-    (x = where(password: pass, email: email).first).nil? ? 0 : x.id
+    (x = where(password: pass, email: email.downcase).first).nil? ? 0 : x.id
   end
 
   def pick_secret!
@@ -34,11 +34,10 @@ class Player < ActiveRecord::Base
     ac = self.game.players.count
     
     while self.secret.nil?
-      c = Word.random.to_s + Word.random.to_s if ac < wc
-      c = SecureRandom.hex(3) if c.nil?
+      c = Word.random.to_s + Word.random.to_s
 
       # Find other players in our game with our secret
-      next if Player.where(:secret => c, :game_id => self.game.id).count > 0
+      # next if Player.where(:secret => c, :game_id => self.game.id).count > 0
       self.secret = c
     end
     self.save!

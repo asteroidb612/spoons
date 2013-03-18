@@ -1,6 +1,15 @@
 class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
+
+  before_filter :no_id_zero
+
+  def no_id_zero
+    if session[:user_id] == 0
+      session[:user_id] = nil
+    end
+  end
+
   def index
     @players = Player.all
 
@@ -57,7 +66,7 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to "/", notice: (@player.name + ' was successfully created.') }
+        format.html { redirect_to "/players/new", notice: (@player.name + ' was successfully created.') }
         format.json { render json: @player, status: :created, location: @player }
       else
         format.html { render action: "new" }
@@ -99,11 +108,15 @@ class PlayersController < ApplicationController
       session[:user_id] = Player.authenticate( params[:player][:email], params[:player][:password])
       if session[:user_id] == 0
         flash[:error] = "Login failed."
-        redirect_to '/'
+        redirect_to '/login'
       else
         redirect_to "/players/#{session[:user_id]}"
         return
       end # @user.nil?
+    else
+      if session[:user_id] != nil
+        redirect_to '/'
+      end
     end # request.post?
   end # login
   
@@ -118,8 +131,8 @@ class PlayersController < ApplicationController
       p = Player.find(session[:user_id])
       t = Tag.new
       t.timestamp = Time.now
-      t.tagger = p
-      t.tagged = p.target
+      t.tagger_id = p.id
+      t.tagged_id = p.target.id
       t.save!
 
       old = p.target
@@ -132,6 +145,6 @@ class PlayersController < ApplicationController
     else
       flash[:tag] = "Incorrect code word!"
     end
-    redirect_to "/players/#{session[:user].id}"
+    redirect_to "/players/#{session[:user_id]}"
   end
 end # PlayersController

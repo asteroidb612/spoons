@@ -6,6 +6,7 @@ Spoon::Application.routes.draw do
   get '/about' => "players#about"
   get '/nope' => "players#nope"
   post '/login' => 'players#login'
+  get '/login' => 'players#login'
   get '/logout' => 'players#logout'
   post '/tag' => 'players#tag'
   get '/feed' => 'players#feed'
