@@ -44,6 +44,17 @@ class Player < ActiveRecord::Base
     self.secret
   end
 
+  def self.most_tags
+    plist = Player.all.sort {|a, b| b.tags.count <=> a.tags.count }
+    max = plist.first.tags.count
+    high = plist.collect {|p| p if p.tags.count == max }.uniq.delete_if {|x| x == nil}
+    str = ""
+    high.each do |p|
+      str = str + " #{p.name} (#{p.tags.count})"
+    end
+    str
+  end
+
   # validates :photo_file_name, presence: true
   # validates :photo_content_type, presence: true
   # validates :photo_size, presence: true
