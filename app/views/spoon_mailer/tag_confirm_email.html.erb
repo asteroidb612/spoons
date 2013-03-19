@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h2><%= @tag.to_s %></h2>
+    <p>
+      If you are reading this (and it looks like you are!) then you have tagged <%= Player.find(@tag.tagged_id).name %>.  Your new target is <%= @player.target.name %>.
+    </p>
+    <p>Thanks for participating!  Feel free to ask for clarifications or report any problems by e-mailing <a href='mailto:mahaney@q.com'>the devs</a>.</p>
+  </body>
+</html>

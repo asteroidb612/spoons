@@ -23,7 +23,16 @@
 	       background-size: cover;">
     
     <div class="fixed">
-      <nav class="top-bar">
+      <nav class="top-bar show-for-touch">
+	<div class="row">
+	 <% if session[:user_id].nil? %>
+	 <a href="/login"><span>Log In</span></a>
+	 <% else %>
+	    RJ Spoon Wars
+	 <% end %>
+	</div>
+      </nav>
+      <nav class="top-bar hide-for-touch">
 	<ul class="title-area">
 	  <!-- Title Area -->
 	  <li class="name">
@@ -32,13 +41,12 @@
 	  <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
 	  
 	  <% if session[:user_id].nil? %>
-	  <li class="toggle-topbar menu-icon hide-for-touch"><a href="/login"><span>Log In</span></a></li>
-	  <li class="toggle-topbar show-for-touch"><a href="/login"><span>Log In</span></a></li>	  
+	  <li class="toggle-topbar menu-icon "><a href="/login"><span>Log In</span></a></li>
 	  <% else %>
 	  <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
 	  <% end %>
 	</ul>
-	<section class="top-bar-section hide-for-touch">
+	<section class="top-bar-section">
 	  <ul class="left">
 	    <% if flash[:error] %>
 	    <li>
@@ -49,7 +57,7 @@
 	  <ul class="right" style="float: right; color: rgb(0, 0, 0); background-color: rgb(17, 17, 17);">
 	    <% if session[:user_id].nil? %>
 	    <%= form_tag(action: "login") do %>
-	    <li><a>ess:</a></li>
+	    <li><a>Email Address:</a></li>
 	    <li><a><%= text_field("player", "email", size: 20, placeholder: "you@example.com")%></a></li>
 	    <li><a>Password:</a></li>
 	    <li><a><%= password_field("player", "password", size: 20, placeholder: "password")%></a></li>

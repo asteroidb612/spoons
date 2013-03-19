@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318031935) do
+ActiveRecord::Schema.define(:version => 20130318203853) do
+
+  create_table "adjs", :force => true do |t|
+    t.string  "word"
+    t.boolean "used", :default => false
+  end
 
   create_table "games", :force => true do |t|
     t.integer  "round_id"
