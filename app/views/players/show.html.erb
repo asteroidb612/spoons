@@ -31,14 +31,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
     </div>      
   </div>
   <div class="large-5 columns panel tab" style="background-color: rgb(165, 42, 42);">
-    <% if @player.target == @player %>
-    <div class="row tab_row">
-      <h2 style="color: white;">You are the survivor!</h2>
-    </div>
-    <div class="row tab_row">
-      
-    </div>
-    <% elsif @player.target %>
+    <% if @player.target %>
     <div class="row tab_row">
       Him</div><br />
     <div class="row tab_row">
@@ -89,8 +82,6 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
   </div>
   <br />
   <% end %>
-  <div class="large-4 columns stats">
-  </div>
   <div class="large-4 offset-1 columns stats">
     <div class="row stat_row">
       <% if @player.tags == [] %>

@@ -24,22 +24,13 @@
     
     <div class="fixed">
       <nav class="top-bar show-for-touch">
-	<ul class="title-area">
-	  <li class="name">
-	    <% if session[:user_id].nil? %>
-	    <a href="/login"><span>Log In</span></a>
-	    <% else %>
-	    <span>RJ Spoon Wars</span>
-	    <% end %>
-	  </li>
-	</ul>
-	<section class="top-bar-section">
-	  <ul class="right">
-	    <li>
-	      <%= flash[:error] %>
-	    </li>
-	  </ul>
-	</section>
+	<div class="row">
+	 <% if session[:user_id].nil? %>
+	 <a href="/login"><span>Log In</span></a>
+	 <% else %>
+	    RJ Spoon Wars
+	 <% end %>
+	</div>
       </nav>
       <nav class="top-bar hide-for-touch">
 	<ul class="title-area">

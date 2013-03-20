@@ -9,16 +9,12 @@ class Game < ActiveRecord::Base
   def assign_targets
     min = 0
     max = players.count - 1
-    plist = players.shuffle
-    10.times do
-      plist.shuffle!
-    end
     (min..max-1).each do |i|
-      plist[i].target = plist[i+1] if plist[i].target_id == nil
-      plist[i].save!
+      players[i].target = players[i+1] if players[i].target_id == nil
+      players[i].save!
     end
-    plist[max].target = plist[0] if plist[max].target_id == nil
-    plist[max].save!
+    players[max].target = players[0] if players[max].target_id == nil
+    players[max].save!
   end
   
   # def most_tags
