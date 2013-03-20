@@ -1,12 +1,20 @@
+<!--
 <div class="container row tab centered" style="text-align: center;">
-  <h2>Tag Feed - All Rounds - Wednesday</h2>
-  <% Tag.after(Time.now - 1.day) do |t| %>
+  <h2>Tag Feed - All Rounds - Past 12 Hours</h2>
+  <% Tag.after(Time.now - 12.hours).each do |t| %>
   <div class="small-4 large-6 columns centered"><%= t.to_s %></div>
   <% end %>
   <br />
 </div>
+-->
 <div class="container row tab centered" style="text-align: center;">
     <h2>Stats for Round 2 - Wednesday</h2>
+</div>
+<div class="container tab row centered" style="text-align: center;">
+  <h3>Tag Feed - Past 12 Hours</h3>
+  <% Game.find(4).tags_after(Time.now - 12.hours).each do |t| %>
+  <div class="small-4 large-6 columns centered"><%= t.to_s %></div>
+  <% end %>
 </div>
 <div class="container tab row centered" style="text-align: center;">
   <h3>Active Players</h3>
@@ -35,6 +43,12 @@
 </div>
 <div class="container row tab centered" style="text-align: center;">
     <h2>Stats for Consolation Round - Wednesday</h2>
+</div>
+<div class="container tab row centered" style="text-align: center;">
+  <h3>Tag Feed - Past 12 Hours</h3>
+  <% Game.find(5).tags_after(Time.now - 12.hours).each do |t| %>
+  <div class="small-4 large-6 columns centered"><%= t.to_s %></div>
+  <% end %>
 </div>
 <div class="container tab row centered" style="text-align: center;">
   <h3>Active Players</h3>

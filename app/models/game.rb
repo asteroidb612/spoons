@@ -3,18 +3,23 @@ class Game < ActiveRecord::Base
   belongs_to :round
 
   def tags
-    this.players.collect {|p| p.tags}.flatten(1)
+    players.collect {|p| p.tags}.flatten(1).sort {|a,b| a.timestamp <=> b.timestamp}
   end
 
   def assign_targets
+    plist = players
+    10.times do
+      plist.shuffle!
+    end
     min = 0
     max = players.count - 1
     (min..max-1).each do |i|
-      players[i].target = players[i+1] if players[i].target_id == nil
-      players[i].save!
+      plist[i].target = plist[i+1] if plist[i].target_id == nil
+      plist[i].save!
     end
-    players[max].target = players[0] if players[max].target_id == nil
-    players[max].save!
+    plist[max].target = plist[0] if plist[max].target_id == nil
+    plist[max].save!
+    return
   end
   
   # def most_tags
@@ -48,6 +53,10 @@ class Game < ActiveRecord::Base
     else
       return "Game not yet over."
     end
+  end
+
+  def tags_after(time)
+    tags.collect {|t| t if t.timestamp > time}.delete_if {|x| x.nil?}
   end
   
 end
