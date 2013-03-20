@@ -55,6 +55,10 @@ class Player < ActiveRecord::Base
     str
   end
 
+  def tag_weights
+    tags.collect {|t| t.tagged.tags.count }
+  end
+  
   # validates :photo_file_name, presence: true
   # validates :photo_content_type, presence: true
   # validates :photo_size, presence: true

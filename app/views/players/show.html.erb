@@ -74,7 +74,7 @@ filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
   <% if @player.game %>
   <div class="large-4 offset-1 columns stats ">
     <div class="row stat_row">
-      Most tags: <%= @player.game.most_tags.name %> (<%= @player.game.most_tags.tags.count %>)
+      Most tags: <%= @player.game.most_tags %>
     </div>
     <div class="row stat_row">
       Victor: <%= @player.game.survivor %>

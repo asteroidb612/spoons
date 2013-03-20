@@ -33,7 +33,7 @@ class PlayersController < ApplicationController
     end
 
     if session[:user_id].to_i != params[:id].to_i
-      redirect_to '/nope'
+      redirect_to '/nope' unless Player.find(params[:id]).tagged
       return
     end
     @player = Player.find(params[:id])

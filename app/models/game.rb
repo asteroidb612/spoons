@@ -21,18 +21,29 @@ class Game < ActiveRecord::Base
     plist[max].save!
   end
   
-  def most_tags
-    ret = nil
-    players.each do |p|
-      if ret == nil
-        ret = p
-      elsif p.tags.count > ret.tags.count
-        ret = p
-      end
-    end
-    return ret
-  end
+  # def most_tags
+  #   ret = nil
+  #   players.each do |p|
+  #     if ret == nil
+  #       ret = p
+  #     elsif p.tags.count > ret.tags.count
+  #       ret = p
+  #     end
+  #   end
+  #   return ret
+  # end
   
+  def most_tags
+    plist = players.sort {|a, b| b.tags.count <=> a.tags.count }
+    max = plist.first.tags.count
+    high = plist.collect {|p| p if p.tags.count == max }.uniq.delete_if {|x| x == nil}
+    str = ""
+    high.each do |p|
+      str = str + " #{p.name} (#{p.tags.count})"
+    end
+    str
+  end
+
   def survivor
     if players.count == 1
       return players.first.name
