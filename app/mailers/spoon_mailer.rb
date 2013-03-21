@@ -3,12 +3,12 @@ class SpoonMailer < ActionMailer::Base
 
   def game_end_email_tagged(player)
     @player = player
-    mail(to: player.email, subject: "RJ Spoon Wars -- Round One End")
+    mail(to: player.email, subject: "RJ Spoon Wars")
   end
 
   def game_end_email_untagged(player)
     @player = player
-    mail(to: player.email, subject: "RJ Spoon Wars -- Round One End")
+    mail(to: player.email, subject: "RJ Spoon Wars -- Round Two End")
   end
   
   def game_open_email(player)
