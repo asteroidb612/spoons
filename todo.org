@@ -1,0 +1,26 @@
+* Basic requirements
+** Two workshops in the morning
+*** Pull from set 1
+** One workshop in the afternoon
+*** Pull from set 2
+** Gender limits better
+** Working the first time
+** E-mail registration confirmation
+*** Ask to complete if unfinished
+* Target deadlines:
+** February 24th-28th ish
+** Diversity Day: March 11th
+* Student Info:
+** SIDLastFirstDivGrade/YearEmailprefix
+* Meet 17th/18th of December
+* Linode Server
+** Practice?
+** Month-to-month, buy in advance
+** Buy for all of February, get set up immediately
+
+* Sign up for one section at a time and send feedback via Javascript
+** Make Ajax work everywhere (Netscape)
+** Awesome Admin Page
+*** God Mode (™)
+*** Email?
+*** Empower the admins
